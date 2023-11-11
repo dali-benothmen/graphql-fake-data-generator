@@ -10,7 +10,7 @@
     "compile:tsc": "tsc -p .",
     "compile:tsup": "tsup src/index.ts --format cjs,esm --dts",
     "build": "pnpm run clean && pnpm run compile:tsup",
-    "lint": "eslint src/**/*.{ts}",
+    "lint": "eslint src/**/*.ts",
     "prettier": "prettier --write src/**/*",
     "start": "pnpm run watch",
     "watch": "pnpm run test:live",
@@ -22,6 +22,7 @@
   "devDependencies": {
     "@swc/core": "^1.3.96",
     "@types/node": "^20.9.0",
+    "@typescript-eslint/eslint-plugin": "^6.10.0",
     "@typescript-eslint/parser": "^6.10.0",
     "cross-env": "^7.0.3",
     "eslint": "^8.53.0",
