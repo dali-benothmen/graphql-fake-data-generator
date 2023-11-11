@@ -1,5 +1,5 @@
 ---
-"graphql-mock-data-generator": patch
+'graphql-fake-data-generator': patch
 ---
 
 Init commit
