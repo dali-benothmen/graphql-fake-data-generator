@@ -12,7 +12,7 @@ export function parseGraphQLSchema(schemaInput: string): GraphQLSchema {
 
     if (isLikelyFilePath(schemaInput)) {
       try {
-        const resolvedPath = path.resolve(__dirname, schemaInput)
+        const resolvedPath = path.resolve(schemaInput)
         schemaString = fs.readFileSync(resolvedPath, 'utf-8')
       } catch (fileError) {
         console.error('Error reading schema file:', fileError)
