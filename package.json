@@ -1,6 +1,6 @@
 {
   "name": "graphql-fake-data-generator",
-  "version": "0.2.6",
+  "version": "0.2.7",
   "description": "",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
