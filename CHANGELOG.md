@@ -1,5 +1,11 @@
 # graphql-fake-data-generator
 
+## 0.2.3
+
+### Patch Changes
+
+- 4d97a93: Refactor parseGraphQLSchema function to handle schema input from both file path and string.
+
 ## 0.2.2
 
 ### Patch Changes
