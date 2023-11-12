@@ -7,15 +7,15 @@ GraphQL Fake Data Generator is a powerful and flexible tool designed to generate
 ## Installation
 
 ```bash
-npm install graphql-fake-data-generator
+npm install graphql-fake-data-generator --save-dev
 ```
 
 ```bash
-yarn add graphql-fake-data-generator
+yarn add -D graphql-fake-data-generator
 ```
 
 ```bash
-pnpm add graphql-fake-data-generator
+pnpm add -D graphql-fake-data-generator
 ```
 
 ## Basic Usage
