@@ -1,5 +1,11 @@
 # graphql-fake-data-generator
 
+## 0.2.2
+
+### Patch Changes
+
+- b831e4c: Patch: Fix file path
+
 ## 0.2.1
 
 ### Patch Changes
