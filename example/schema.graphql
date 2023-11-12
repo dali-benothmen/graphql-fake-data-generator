@@ -1,10 +1,3 @@
-interface Character {
-  id: ID!
-  name: String!
-  friends: [Character]
-  appearsIn: [String!]!
-}
-
 enum LocationType {
   SPACESHIP
   HOUSE
@@ -13,20 +6,20 @@ enum LocationType {
   ROOM
 }
 
-type Human implements Character {
+type Human {
   id: ID!
   name: String!
-  friends: [Character]
+  friends: [String]
   appearsIn: [String!]!
   starships: [String!]
   totalCredits: Int
   location: LocationType!
 }
 
-type Droid implements Character {
+type Droid {
   id: ID!
   name: String!
-  friends: [Character]
+  friends: [String]
   appearsIn: [String!]!
   primaryFunction: String
   location: LocationType!

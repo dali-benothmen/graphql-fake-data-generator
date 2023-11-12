@@ -1,10 +1,4 @@
-export enum SchemaTypeKind {
-  OBJECT = 'OBJECT',
-  ENUM = 'ENUM',
-  SCALAR = 'SCALAR',
-  INTERFACE = 'INTERFACE',
-  UNION = 'UNION',
-}
+export type SchemaTypeKind = 'OBJECT' | 'ENUM' | 'SCALAR' | 'INTERFACE' | 'UNION'
 
 export interface AnalyzedFieldType {
   type: string
@@ -13,12 +7,12 @@ export interface AnalyzedFieldType {
 }
 
 export interface AnalyzedEnumType {
-  kind: SchemaTypeKind.ENUM
+  kind: 'ENUM'
   values: string[]
 }
 
 export interface AnalyzedObjectType {
-  kind: SchemaTypeKind.OBJECT
+  kind: 'OBJECT'
   fields: Record<string, AnalyzedFieldType>
 }
 
