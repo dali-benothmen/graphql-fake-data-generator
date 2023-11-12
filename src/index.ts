@@ -1,17 +1,15 @@
-import { buildSchema, GraphQLSchema, GraphQLObjectType, TypeNode } from 'graphql'
+import { buildSchema, GraphQLSchema, getNamedType, isEnumType, isObjectType, isListType, isNonNullType } from 'graphql'
 import { readFileSync } from 'fs'
 import path from 'path'
 import { faker } from '@faker-js/faker'
 import { checkFilePath } from './utils/check-file-path'
-import { rootFieldReturnArray } from './utils/root-field-return-array'
-import { convertGraphQLTypeNodeToTypescript } from './utils/convert-graphql-type-node-to-typescript'
+import { AnalyzedFieldType, AnalyzedSchema, SchemaTypeKind } from './types'
 
 // Function to read and parse the schema
 async function parseGraphQLSchema(schemaInput: string): Promise<GraphQLSchema> {
   try {
     let schemaString: string
 
-    // Check if the input is a file path
     if (checkFilePath(schemaInput)) {
       schemaString = readFileSync(path.resolve(__dirname, schemaInput), 'utf-8')
     } else {
@@ -26,30 +24,43 @@ async function parseGraphQLSchema(schemaInput: string): Promise<GraphQLSchema> {
     throw error
   }
 }
-
-function analyzeSchema(schema: GraphQLSchema) {
+function analyzeSchema(schema: GraphQLSchema): AnalyzedSchema {
   const typeMap = schema.getTypeMap()
-  const schemaStructure: Record<string, Record<string, string>> = {}
+  const schemaStructure: AnalyzedSchema = {}
 
   Object.keys(typeMap).forEach((typeName) => {
     if (!typeName.startsWith('__')) {
       const type = typeMap[typeName]
 
-      if (type instanceof GraphQLObjectType) {
-        schemaStructure[typeName] = {}
-
+      if (isEnumType(type)) {
+        schemaStructure[typeName] = {
+          kind: SchemaTypeKind.ENUM,
+          values: type.getValues().map((value) => value.name),
+        }
+      } else if (isObjectType(type)) {
         const fields = type.getFields()
+        const analyzedFields: Record<string, AnalyzedFieldType> = {}
 
         Object.keys(fields).forEach((fieldName) => {
-          const field = fields[fieldName]
-          schemaStructure[typeName][fieldName] = field.type.toString()
+          const fieldType = getNamedType(fields[fieldName].type)
+          analyzedFields[fieldName] = {
+            type: fieldType.toString(),
+            isList: isListType(fields[fieldName].type),
+            isNonNull: isNonNullType(fields[fieldName].type),
+          }
         })
+
+        schemaStructure[typeName] = {
+          kind: SchemaTypeKind.OBJECT,
+          fields: analyzedFields,
+        }
       }
     }
   })
 
   return schemaStructure
 }
+
 // Main function
 
 const exampleSchema = `
@@ -66,9 +77,8 @@ const exampleSchema = `
 const main = async () => {
   const schema = await parseGraphQLSchema('../example/schema.graphql')
   const analyzedSchema = analyzeSchema(schema)
-  const isArray = rootFieldReturnArray(schema, 'users')
 
-  console.log({ analyzedSchema, isArray })
+  console.log({ analyzedSchema })
 }
 
 main().catch((error) => console.error(error))

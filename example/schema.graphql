@@ -1,9 +1,38 @@
-type User {
+interface Character {
   id: ID!
   name: String!
-  email: String!
+  friends: [Character]
+  appearsIn: [String!]!
+}
+
+enum LocationType {
+  SPACESHIP
+  HOUSE
+  CAMPSITE
+  APARTMENT
+  ROOM
+}
+
+type Human implements Character {
+  id: ID!
+  name: String!
+  friends: [Character]
+  appearsIn: [String!]!
+  starships: [String!]
+  totalCredits: Int
+  location: LocationType!
+}
+
+type Droid implements Character {
+  id: ID!
+  name: String!
+  friends: [Character]
+  appearsIn: [String!]!
+  primaryFunction: String
+  location: LocationType!
 }
 
 type Query {
-  users: [User!]!
+  humans: [Human!]!
+  droids: [Droid!]!
 }
