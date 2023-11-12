@@ -1,5 +1,11 @@
 # graphql-fake-data-generator
 
+## 0.2.6
+
+### Patch Changes
+
+- 6e751b0: Improve file path handling and fallback to stringified schema if no valid path is found
+
 ## 0.2.5
 
 ### Patch Changes
