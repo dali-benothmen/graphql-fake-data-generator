@@ -1,5 +1,11 @@
 # graphql-fake-data-generator
 
+## 0.1.5
+
+### Patch Changes
+
+- e1ac9ac: Fix file path validation and error handling
+
 ## 0.1.4
 
 ### Patch Changes
