@@ -7,11 +7,12 @@ export function parseGraphQLSchema(schemaInput: string): GraphQLSchema {
     let schemaString: string
 
     try {
-      schemaString = fs.readFileSync(schemaInput, 'utf-8')
+      const resolvedPathCWD = path.resolve(process.cwd(), schemaInput)
+      schemaString = fs.readFileSync(resolvedPathCWD, 'utf-8')
     } catch (directReadError) {
       try {
-        const resolvedPath = path.resolve(__dirname, schemaInput)
-        schemaString = fs.readFileSync(resolvedPath, 'utf-8')
+        const resolvedPathDirname = path.resolve(__dirname, schemaInput)
+        schemaString = fs.readFileSync(resolvedPathDirname, 'utf-8')
       } catch (dirnameReadError) {
         // If both reads fail, assume it's a stringified schema
         schemaString = schemaInput
