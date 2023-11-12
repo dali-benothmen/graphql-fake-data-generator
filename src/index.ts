@@ -1,3 +1,3 @@
-import { analyzeSchema } from './analyze-schema'
-import { generateMockData } from './generate-mock-data'
-import { parseGraphQLSchema } from './parse-graphql-schema'
+export { analyzeSchema } from './analyze-schema'
+export { generateMockData } from './generate-mock-data'
+export { parseGraphQLSchema } from './parse-graphql-schema'
