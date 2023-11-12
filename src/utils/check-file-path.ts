@@ -2,34 +2,18 @@ import fs from 'fs'
 import path from 'path'
 
 export function checkFilePath(filePath: string): boolean {
-  if (filePath.includes('\n')) {
-    console.log('File path includes newline character')
-    return false
-  }
+  try {
+    const resolvedPath = path.resolve(__dirname, filePath)
 
-  function isFile(resolvedPath: string): boolean {
-    try {
-      const stats = fs.statSync(resolvedPath)
+    const stats = fs.statSync(resolvedPath)
 
-      return stats.isFile()
-    } catch (error) {
-      console.error('Error checking file at path:', resolvedPath, error)
+    if (!stats.isFile()) {
       return false
     }
-  }
 
-  // Resolve the path relative to __dirname
-  let resolvedPath = path.resolve(__dirname, filePath)
-  if (isFile(resolvedPath)) {
     return true
+  } catch (error) {
+    console.log('Error checking file path: ', error)
+    throw error
   }
-
-  // Resolve the path relative to the current working directory
-  resolvedPath = path.resolve(process.cwd(), filePath)
-  if (isFile(resolvedPath)) {
-    return true
-  }
-
-  // If neither worked, log the issue and return false
-  return false
 }
