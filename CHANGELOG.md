@@ -1,5 +1,11 @@
 # graphql-fake-data-generator
 
+## 0.2.9
+
+### Patch Changes
+
+- 0de882a: Add new tests and functions for schema analysis and generating mock data
+
 ## 0.2.8
 
 ### Patch Changes
