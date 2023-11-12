@@ -1,5 +1,11 @@
 # graphql-fake-data-generator
 
+## 0.2.0
+
+### Minor Changes
+
+- 8e7b4b5: Refactor import statements and add new functionality to parse and analyze GraphQL schema
+
 ## 0.1.5
 
 ### Patch Changes
