@@ -21,6 +21,10 @@
   "keywords": [],
   "author": "Mohamed Ali Ben Othmen",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/MedAli5543/graphql-fake-data-generator"
+  },
   "peerDependencies": {
     "graphql": "~16.8.1"
   },
