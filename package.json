@@ -10,12 +10,11 @@
     "test": "vitest run",
     "clean": "rimraf dist/**",
     "compile:tsc": "tsc -p .",
-    "compile:tsup": "tsup src/index.ts --format cjs,esm --dts",
+    "compile:tsup": "tsup src/** --format cjs,esm --dts",
     "build": "pnpm run clean && pnpm run compile:tsup",
     "lint": "eslint src/**/*.ts",
     "prettier": "prettier --write src/**/*",
-    "start": "pnpm run watch",
-    "watch": "pnpm run test:live",
+    "start": "pnpm run test:live",
     "release": "pnpm run lint && pnpm run test && pnpm run build && changeset publish",
     "ci": "pnpm run lint && pnpm run test && pnpm run build"
   },
@@ -51,5 +50,8 @@
     "tsup": "^7.2.0",
     "typescript": "^5.2.2",
     "vitest": "^0.34.6"
+  },
+  "dependencies": {
+    "@faker-js/faker": "^8.2.0"
   }
 }
