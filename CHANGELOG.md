@@ -1,5 +1,11 @@
 # graphql-fake-data-generator
 
+## 0.1.3
+
+### Patch Changes
+
+- 0c5360a: Add Github repo Link
+
 ## 0.1.2
 
 ### Patch Changes
