@@ -1,5 +1,11 @@
 # graphql-fake-data-generator
 
+## 0.2.1
+
+### Patch Changes
+
+- a5b9ad7: Export core functions
+
 ## 0.2.0
 
 ### Minor Changes
