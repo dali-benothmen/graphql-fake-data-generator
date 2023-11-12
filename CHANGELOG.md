@@ -1,5 +1,12 @@
 # graphql-fake-data-generator
 
+## 0.1.2
+
+### Patch Changes
+
+- 616757b: Readme: Fix installation commands
+- bd31ccb: Readme: Small Fix
+
 ## 0.1.1
 
 ### Patch Changes
