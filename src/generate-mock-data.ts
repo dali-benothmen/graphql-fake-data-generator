@@ -9,10 +9,10 @@ interface MockDataOptions<TQuery> {
   query?: Partial<Record<keyof TQuery, FieldCustomizationOptions>>
 }
 
-const generateMockData = <TQuery>(
+function generateMockData<TQuery>(
   analyzedSchema: AnalyzedSchema,
   options: MockDataOptions<TQuery> = {},
-): Record<string, any> => {
+): Record<string, any> {
   const queryType = analyzedSchema.Query
 
   if (!queryType || queryType.kind !== 'OBJECT' || !queryType.fields) {
@@ -25,6 +25,7 @@ const generateMockData = <TQuery>(
   Object.keys(queryFields).forEach((queryFieldName) => {
     const queryField = queryFields[queryFieldName]
     const fieldGenerators = options.query?.[queryFieldName as keyof TQuery]
+
     mockData[queryFieldName] = generateMockForField(
       queryField,
       analyzedSchema,
@@ -46,6 +47,7 @@ const generateMockForField = (
 ): any => {
   if (field.isList) {
     const listLength = options.listLength ?? 2
+
     return Array.from({ length: listLength }).map(() =>
       generateMockBasedOnType(field.type, schema, options, fieldName, customGenerators),
     )
@@ -65,19 +67,17 @@ const generateMockBasedOnType = (
     return customGenerators[fieldName]()
   }
 
-  // Fallback to default generators
   switch (typeName) {
     case 'ID':
-      return faker.datatype.uuid()
+      return faker.string.uuid()
     case 'String':
       return faker.lorem.word()
     case 'Int':
-      return faker.datatype.number({ precision: 1 })
+      return faker.number.int()
     case 'Float':
-      return faker.datatype.float()
+      return faker.number.float()
     case 'Boolean':
       return faker.datatype.boolean()
-    // Add other scalar types as needed
     default:
       break
   }
@@ -87,7 +87,8 @@ const generateMockBasedOnType = (
   if (typeInfo) {
     if (typeInfo.kind === 'ENUM') {
       const enumValues = typeInfo.values
-      return enumValues[Math.floor(Math.random() * enumValues.length)] // Randomly select an enum value
+
+      return randomize(enumValues)
     } else if (typeInfo.kind === 'OBJECT') {
       const objectMock: Record<string, any> = {}
 
@@ -98,6 +99,7 @@ const generateMockBasedOnType = (
           customGenerators && customGenerators[nestedFieldName]
             ? { [nestedFieldName]: customGenerators[nestedFieldName] }
             : undefined
+
         objectMock[nestedFieldName] = generateMockForField(
           field,
           schema,
