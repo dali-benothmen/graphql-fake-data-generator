@@ -1,5 +1,11 @@
 # graphql-fake-data-generator
 
+## 0.2.4
+
+### Patch Changes
+
+- 02dfd53: Change fs.readFileSync to resolve the schema path with process.cwd() or \_\_dirname.
+
 ## 0.2.3
 
 ### Patch Changes
