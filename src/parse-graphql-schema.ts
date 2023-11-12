@@ -3,7 +3,7 @@ import { readFileSync } from 'fs'
 import path from 'path'
 import { checkFilePath } from './utils/check-file-path'
 
-async function parseGraphQLSchema(schemaInput: string): Promise<GraphQLSchema> {
+function parseGraphQLSchema(schemaInput: string): GraphQLSchema {
   try {
     let schemaString: string
 
