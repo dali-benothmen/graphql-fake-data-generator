@@ -1,5 +1,11 @@
 # graphql-fake-data-generator
 
+## 0.1.4
+
+### Patch Changes
+
+- 64f96db: Refactor parseGraphQLSchema to remove async-await and return a GraphQLSchema
+
 ## 0.1.3
 
 ### Patch Changes
