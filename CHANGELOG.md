@@ -1,5 +1,11 @@
 # graphql-fake-data-generator
 
+## 0.2.8
+
+### Patch Changes
+
+- dba9416: Add contributing.md, pull_request_template.md and code_of_conduct.md
+
 ## 0.2.7
 
 ### Patch Changes
