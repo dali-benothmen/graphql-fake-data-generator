@@ -1,5 +1,12 @@
 # graphql-fake-data-generator
 
+## 0.1.1
+
+### Patch Changes
+
+- 344fd5d: Export lib functions
+- 6414151: Add readme file
+
 ## 0.1.0
 
 ### Minor Changes
