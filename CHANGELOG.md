@@ -1,5 +1,11 @@
 # graphql-fake-data-generator
 
+## 0.2.5
+
+### Patch Changes
+
+- ecce882: Refactor file reading logic in parseGraphQLSchema.ts
+
 ## 0.2.4
 
 ### Patch Changes
