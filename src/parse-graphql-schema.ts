@@ -6,17 +6,22 @@ export function parseGraphQLSchema(schemaInput: string): GraphQLSchema {
   try {
     let schemaString: string
 
-    try {
-      const resolvedPathCWD = path.resolve(process.cwd(), schemaInput)
-      schemaString = fs.readFileSync(resolvedPathCWD, 'utf-8')
-    } catch (directReadError) {
-      try {
-        const resolvedPathDirname = path.resolve(__dirname, schemaInput)
-        schemaString = fs.readFileSync(resolvedPathDirname, 'utf-8')
-      } catch (dirnameReadError) {
-        // If both reads fail, assume it's a stringified schema
-        schemaString = schemaInput
-      }
+    // List of paths to attempt
+    const possiblePaths = [
+      schemaInput, // As is (could be absolute)
+      path.resolve(process.cwd(), schemaInput), // Relative to project root
+      path.resolve(__dirname, schemaInput), // Relative to module directory
+    ]
+
+    // Find the first existing path
+    const existingPath = possiblePaths.find((p) => fs.existsSync(p))
+
+    if (existingPath) {
+      // If a valid path is found, read the file
+      schemaString = fs.readFileSync(existingPath, 'utf-8')
+    } else {
+      // If no valid path is found, assume it's a stringified schema
+      schemaString = schemaInput
     }
 
     return buildSchema(schemaString)
