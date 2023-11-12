@@ -1,5 +1,11 @@
 # graphql-fake-data-generator
 
+## 0.2.7
+
+### Patch Changes
+
+- 399ec47: PATCH: Normalize file path for GraphQL schema loading
+
 ## 0.2.6
 
 ### Patch Changes
