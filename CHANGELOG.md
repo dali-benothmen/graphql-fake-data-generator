@@ -1,5 +1,11 @@
 # graphql-fake-data-generator
 
+## 0.1.0
+
+### Minor Changes
+
+- 545a360: Add function that generate mock data and Fix optional query not showing.
+
 ## 0.0.3
 
 ### Patch Changes
