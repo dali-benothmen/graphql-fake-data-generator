@@ -1,5 +1,11 @@
 # graphql-fake-data-generator
 
+## 0.2.10
+
+### Patch Changes
+
+- 116fdef: Remove pnpm and use npm instead
+
 ## 0.2.9
 
 ### Patch Changes
