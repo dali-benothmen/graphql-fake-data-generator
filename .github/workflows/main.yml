@@ -8,16 +8,13 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: [16]
+        node-version: [22]
     steps:
       - uses: actions/checkout@v3
-      - uses: pnpm/action-setup@v2
-        with:
-          version: 8
       - uses: actions/setup-node@v3
         with:
-          node-version: 16.x
-          cache: 'pnpm'
+          node-version: 22.x
+          cache: 'npm'
 
-      - run: pnpm install --frozen-lockfile
-      - run: pnpm run ci
+      - run: npm install --frozen-lockfile
+      - run: npm run ci

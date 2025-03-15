@@ -11,12 +11,12 @@
     "clean": "rimraf dist/**",
     "compile:tsc": "tsc -p .",
     "compile:tsup": "tsup src/** --format cjs,esm --dts",
-    "build": "pnpm run clean && pnpm run compile:tsup",
+    "build": "npm run clean && npm run compile:tsup",
     "lint": "eslint src/**/*.ts",
     "prettier": "prettier --write src/**/*",
-    "start": "pnpm run test:live",
-    "release": "pnpm run lint && pnpm run test && pnpm run build && changeset publish",
-    "ci": "pnpm run lint && pnpm run test && pnpm run build"
+    "start": "npm run test:live",
+    "release": "npm run lint && npm run test && npm run build && changeset publish",
+    "ci": "npm run lint && npm run test && npm run build"
   },
   "keywords": [],
   "author": "Mohamed Ali Ben Othmen",
